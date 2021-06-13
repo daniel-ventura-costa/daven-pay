@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  mysql-app:
+    container_name: mysql-davenpay
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    volumes:
+      - .docker/dbdata:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: davenpay
+      MYSQL_ROOT_PASSWORD: davenpay
+    networks:
+      - network-davenpay
+
+  instancia01:
+    container_name: instancia01-davenpay
+    build: .docker/instancias
+    ports:
+      - "8081:80"
+    volumes:
+      - ./:/usr/share/nginx
+    networks:
+      - network-davenpay
+    depends_on:
+      - "mysql-app"
+
+networks:
+  network-davenpay:
+    driver: bridge
