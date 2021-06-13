@@ -58,3 +58,8 @@ https://www.linkedin.com/jobs/view/2569683651/?eBP=JOB_SEARCH_ORGANIC&recommende
 - [ ] Usar o Mongo para guardar os logs da aplicação
 - [ ] Utilizar o Swagger para documentar as APIs
 - [ ] Utilizar um uuid em vez do id no exemplo de payload
+- [ ] Mostrar o historico dos commits, pequenos commits, de maneira frequente
+- [ ] Colocar Softdelete e citar o marco civil da internet
+- [ ] Usar JWT (segurança)
+- [ ] mudar o modo de payment na transaction de id para um hash ou algo que não permita o usuario incrementar, pois assim ele descobriria quantos usuarios existem no sistema.
+- [ ] Explicar por que campo cpf e cnpj, por que o sistema deve tratar isso, e o banco deve ser muito claro e transparente quanto ao dado que ele hospeda naquele campo
