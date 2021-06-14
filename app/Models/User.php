@@ -13,13 +13,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable, HasFactory;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email',
+        'user_type_id', 'name', 'email', 'cpf', 'cnpj', 'user_type'
     ];
 
     /**
@@ -30,4 +32,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function wallet()
+    {
+        $this->hasOne(Wallet::class);
+    }
 }
