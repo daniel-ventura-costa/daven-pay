@@ -13,7 +13,7 @@ class MigrationTabelaTransactionType extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_type', function (Blueprint $table) {
+        Schema::create('transactions_type', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_name', 255);
             $table->timestamps();
@@ -28,6 +28,6 @@ class MigrationTabelaTransactionType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_type');
+        Schema::dropIfExists('transactions_type');
     }
 }

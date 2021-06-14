@@ -13,7 +13,7 @@ class MigrationTabelaWallet extends Migration
      */
     public function up()
     {
-        Schema::create('wallet', function (Blueprint $table) {
+        Schema::create('wallets', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->uuid('wallet_hash');
@@ -31,6 +31,6 @@ class MigrationTabelaWallet extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallet');
+        Schema::dropIfExists('wallets');
     }
 }

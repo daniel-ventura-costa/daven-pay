@@ -16,16 +16,16 @@ class MigrationTabelaWalletTransactions extends Migration
         Schema::create('wallet_transactions', function (Blueprint $table) {
             $table->id();
             $table->uuid('transaction_hash');
-            $table->bigInteger('transaction_type_id')->unsigned();
+            $table->bigInteger('transactions_type_id')->unsigned();
             $table->float('amount');
             $table->bigInteger('payer_wallet_id')->unsigned();
             $table->bigInteger('payee_wallet_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('payer_wallet_id')->references('id')->on('wallet');
-            $table->foreign('payee_wallet_id')->references('id')->on('wallet');
-            $table->foreign('transaction_type_id')->references('id')->on('transaction_type');
+            $table->foreign('payer_wallet_id')->references('id')->on('wallets');
+            $table->foreign('payee_wallet_id')->references('id')->on('wallets');
+            $table->foreign('transactions_type_id')->references('id')->on('transactions_type');
         });
     }
 
