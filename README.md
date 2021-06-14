@@ -2,9 +2,11 @@
 
 Aplicação de uma versão simplificada de uma fintech de processamento de pagamentos.
 
-![alt text](https://raw.githubusercontent.com/daniel-ventura-costa/daven-pay/main/public/assets/img/logo_completo.png)
+![alt text](https://raw.githubusercontent.com/daniel-ventura-costa/blob/daven-pay/main/public/assets/img/logo_completo.png)
 
-![alt text](https://github.com/daniel-ventura-costa/daven-pay/main/public/assets/img/logo_completo.png?raw=true)
+![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/logo_completo.png?raw=true)
+
+![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/logo_completo.png)
 
 ### Objetivo: PicPay Simplificado
 
