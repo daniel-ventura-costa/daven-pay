@@ -2,11 +2,7 @@
 
 Aplicação de uma versão simplificada de uma fintech de processamento de pagamentos.
 
-![alt text](https://raw.githubusercontent.com/daniel-ventura-costa/blob/daven-pay/main/public/assets/img/logo_completo.png)
-
 ![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/logo_completo.png?raw=true)
-
-![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/logo_completo.png)
 
 ### Objetivo: PicPay Simplificado
 
@@ -69,3 +65,11 @@ https://www.linkedin.com/jobs/view/2569683651/?eBP=JOB_SEARCH_ORGANIC&recommende
 - [ ] Usar JWT (segurança)
 - [ ] mudar o modo de payment na transaction de id para um hash ou algo que não permita o usuario incrementar, pois assim ele descobriria quantos usuarios existem no sistema.
 - [ ] Explicar por que campo cpf e cnpj, por que o sistema deve tratar isso, e o banco deve ser muito claro e transparente quanto ao dado que ele hospeda naquele campo
+
+### Modelagem do banco de dados
+
+![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_banco_de_dados.jpg?raw=true)
+
+### Modelagem da infra-estrutura
+
+![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_infra.jpg?raw=true)
