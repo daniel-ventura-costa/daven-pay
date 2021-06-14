@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MigrationTabelaWalletTransactions extends Migration
+class MigrationTabelaTransactions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class MigrationTabelaWalletTransactions extends Migration
      */
     public function up()
     {
-        Schema::create('wallet_transactions', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->uuid('transaction_hash');
             $table->bigInteger('transactions_type_id')->unsigned();
@@ -36,6 +36,6 @@ class MigrationTabelaWalletTransactions extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wallet_transactions');
+        Schema::dropIfExists('transactions');
     }
 }
