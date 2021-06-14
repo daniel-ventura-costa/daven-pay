@@ -2,6 +2,10 @@
 
 Aplicação de uma versão simplificada de uma fintech de processamento de pagamentos.
 
+![alt text](https://raw.githubusercontent.com/daniel-ventura-costa/daven-pay/main/public/assets/img/logo_completo.png)
+
+![alt text](https://github.com/daniel-ventura-costa/daven-pay/main/public/assets/img/logo_completo.png?raw=true)
+
 ### Objetivo: PicPay Simplificado
 
 - [ ] Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPF/CNPJ e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
