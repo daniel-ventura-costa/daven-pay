@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\TransactionTypeSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+        $this->call([
+            UserTypeSeeder::class,
+            TransactionTypeSeeder::class,
+            UserSeeder::class
+        ]);
     }
 }
