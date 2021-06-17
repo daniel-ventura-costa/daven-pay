@@ -6,12 +6,12 @@ Aplicação de uma versão simplificada de uma fintech de processamento de pagam
 
 ### Objetivo: PicPay Simplificado
 
-- [ ] Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPF/CNPJ e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
-- [ ] Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários.
-- [ ] Lojistas só recebem transferências, não enviam dinheiro para ninguém.
-- [ ] Validar se o usuário tem saldo antes da transferência.
+- [x] Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPF/CNPJ e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
+- [x] Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários.
+- [x] Lojistas só recebem transferências, não enviam dinheiro para ninguém.
+- [x] Validar se o usuário tem saldo antes da transferência.
 
-- [ ] Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock para simular (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
+- [x] Antes de finalizar a transferência, deve-se consultar um serviço autorizador externo, use este mock para simular (https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6).
 
 - [ ] A operação de transferência deve ser uma transação (ou seja, revertida em qualquer caso de inconsistência) e o dinheiro deve voltar para a carteira do usuário que envia.
 
@@ -38,7 +38,7 @@ Aplicação de uma versão simplificada de uma fintech de processamento de pagam
 
 ### O que será um Diferencial
 
-- [ ] Uso de Docker
+- [x] Uso de Docker
 - [ ] Testes de integração
 - [ ] Testes unitários
 - [ ] Uso de Design Patterns
@@ -56,15 +56,15 @@ https://www.linkedin.com/jobs/view/2569683651/?eBP=JOB_SEARCH_ORGANIC&recommende
 - [ ] https://www.php.net/supported-versions.php (dizer o porque usou php7 ou 8)
 - [ ] Design e desenvolvimento de micro serviços horizontalmente escaláveis;
 - [ ] Jobs de alto desempenho e comunicação entre serviços utilizando soluções de fila como Kafka;
-- [ ] Usar o Mysql para os dados em geral
+- [x] Usar o Mysql para os dados em geral
 - [ ] Usar o Mongo para guardar os logs da aplicação
 - [ ] Utilizar o Swagger para documentar as APIs
-- [ ] Utilizar um uuid em vez do id no exemplo de payload
+- [x] Utilizar um uuid em vez do id no exemplo de payload
 - [ ] Mostrar o historico dos commits, pequenos commits, de maneira frequente
 - [ ] Colocar Softdelete e citar o marco civil da internet
-- [ ] Usar JWT (segurança)
+- [x] Usar JWT (segurança)
 - [ ] mudar o modo de payment na transaction de id para um hash ou algo que não permita o usuario incrementar, pois assim ele descobriria quantos usuarios existem no sistema.
-- [ ] Explicar por que campo cpf e cnpj, por que o sistema deve tratar isso, e o banco deve ser muito claro e transparente quanto ao dado que ele hospeda naquele campo
+- [x] Explicar por que campo cpf e cnpj, por que o sistema deve tratar isso, e o banco deve ser muito claro e transparente quanto ao dado que ele hospeda naquele campo
 
 ### Modelagem do banco de dados
 
