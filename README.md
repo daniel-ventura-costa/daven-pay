@@ -1,10 +1,10 @@
 # DavenPay
 
-Aplicação de uma versão simplificada de uma fintech de processamento de pagamentos.
+Aplicação de uma versão simplificada de uma fintech brasileira ;)
 
 ![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/logo_completo.png?raw=true)
 
-### Objetivo: PicPay Simplificado
+### Objetivo da Fintech de simplificado
 
 - [x] Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPF/CNPJ e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
 - [x] Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários.
