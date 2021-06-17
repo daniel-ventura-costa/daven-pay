@@ -16,3 +16,18 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => '/api/v1', 'middleware' => 'auth'], function () use ($router) {
+
+    // Users
+    $router->get('/user', 'UserController@all');
+
+    // Wallets
+    $router->get('/wallet', 'WalletController@read');
+    $router->post('/wallet', 'WalletController@create');
+
+    // Transactions
+    $router->post('/transaction', 'TransactionController@transaction');
+});
+
+$router->post('/api/v1/login', 'TokenController@login');
