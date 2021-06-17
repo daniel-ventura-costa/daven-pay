@@ -33,8 +33,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password',
     ];
 
+    public function type()
+    {
+        return $this->belongsTo(UserType::class, 'user_type_id');
+    }
+
     public function wallet()
     {
-        $this->hasOne(Wallet::class);
+        return $this->hasOne(Wallet::class);
     }
 }
