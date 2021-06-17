@@ -17,8 +17,8 @@ class MigrationTabelaUsers extends Migration
             $table->id();
             $table->bigInteger('user_type_id')->unsigned();
             $table->string('name', 255);
-            $table->string('cpf', 45)->unique();
-            $table->string('cnpj', 45)->unique();
+            $table->string('cpf', 45)->unique()->nullable();
+            $table->string('cnpj', 45)->unique()->nullable();
             $table->string('email', 255)->unique();
             $table->string('password', 255);
             $table->timestamps();

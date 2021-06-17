@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class UserSeeder extends Seeder
             'name'         => $faker->name,
             'cpf'          => $faker->cpf(false),
             'email'        => $faker->email,
-            'password'     => $faker->password
+            'password'     => Hash::make('senha')
         ]);
 
         $wallet1 = Wallet::create([
@@ -45,7 +46,7 @@ class UserSeeder extends Seeder
             'name'         => $faker->name,
             'cpf'          => $faker->cpf(false),
             'email'        => $faker->email,
-            'password'     => $faker->password
+            'password'     => Hash::make('senha')
         ]);
 
         $wallet2 = Wallet::create([
@@ -68,7 +69,7 @@ class UserSeeder extends Seeder
             'name'         => $faker->company,
             'cnpj'         => $faker->cnpj(false),
             'email'        => $faker->companyEmail,
-            'password'     => $faker->password
+            'password'     => Hash::make('senha')
         ]);
 
         $wallet3 = Wallet::create([

@@ -18,8 +18,8 @@ class MigrationTabelaTransactions extends Migration
             $table->uuid('transaction_hash');
             $table->bigInteger('transactions_type_id')->unsigned();
             $table->float('amount');
-            $table->bigInteger('payer_wallet_id')->unsigned();
-            $table->bigInteger('payee_wallet_id')->unsigned();
+            $table->bigInteger('payer_wallet_id')->unsigned()->nullable();
+            $table->bigInteger('payee_wallet_id')->unsigned()->nullable();
             $table->timestamps();
             $table->softDeletes();
 
