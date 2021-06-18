@@ -14,4 +14,10 @@ abstract class BaseRepository
         $model = DB::table($this->table)->find($id);
         return (is_null($model)) ? null : (array) $model;
     }
+
+    public function insert(array $values): bool
+    {
+        $model = DB::table($this->table)->insert($values);
+        return $model;
+    }
 }

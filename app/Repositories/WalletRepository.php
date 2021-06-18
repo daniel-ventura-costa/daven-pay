@@ -13,7 +13,7 @@ class WalletRepository extends BaseRepository
      *
      * @return array|null
      */
-    public function getWalletByHash(string $walletHash): array
+    public function getWalletByHash(string $walletHash): ?array
     {
         $model = Wallet::where('wallet_hash', $walletHash)->first();
         return is_null($model) ? null : $model->toArray();
@@ -27,7 +27,7 @@ class WalletRepository extends BaseRepository
      */
     public function hasBalance($walletId, $amount): bool
     {
-        return $amount < $this->getBalance($walletId);
+        return $amount <= $this->getBalance($walletId);
     }
 
     /**

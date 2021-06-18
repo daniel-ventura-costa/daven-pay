@@ -15,7 +15,9 @@ class ExternalAuthorizerService
      */
     public function authorize(): bool
     {
-        $client = new Client();
+        $client = new Client([
+            'verify' => false
+        ]);
         $response = $client->get($this->url);
 
         $contents = $response->getBody()->getContents();

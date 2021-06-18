@@ -26,14 +26,4 @@ class WalletController extends Controller
         return response()
                 ->json($walletModel, 200);
     }
-
-    public function update()
-    {
-
-    }
-
-    public function delete()
-    {
-        
-    }
 }

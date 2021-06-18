@@ -22,19 +22,4 @@ class UserController extends Controller
         $userModel->password = '123456';
         $userModel->save();
     }
-
-    public function read()
-    {
-
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function delete()
-    {
-        
-    }
 }

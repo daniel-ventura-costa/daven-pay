@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
