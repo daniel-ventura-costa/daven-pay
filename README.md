@@ -61,8 +61,8 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 
 ### Modelagem do banco de dados
 
-![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_banco_de_dados.jpg?raw=true)
+![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_banco_de_dados_1.jpg?raw=true)
 
 ### Modelagem da infra-estrutura em Docker
 
-![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_infra.jpg?raw=true)
+![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_infra_1.jpg?raw=true)
