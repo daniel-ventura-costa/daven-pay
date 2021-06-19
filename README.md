@@ -59,10 +59,14 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 - [x] Usar JWT para autenticação (segurança)
 - [x] Colocar SoftDelete e citar o marco civil da internet
 
+### Rodando códigos de analise estática
+- [ ] docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpmd app html cleancode,codesize,controversial,design,naming,unusedcode --reportfile phpmd.html
+- [ ] docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpstan analyse --level 1 app
+
 ### Modelagem do banco de dados
 
 ![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_banco_de_dados_1.jpg?raw=true)
 
-### Modelagem da infra-estrutura em Docker
+### Diagrama da infra-estrutura em Docker
 
 ![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_infra_1.jpg?raw=true)
