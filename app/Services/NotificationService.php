@@ -4,17 +4,17 @@ namespace App\Services;
 
 use GuzzleHttp\Client;
 
-class ExternalAuthorizerService
+class NotificationService
 {
     private $url;
 
-    public function __constuct()
+    public function __construct()
     {
-        $this->url = env('EXTERNAL_AUTHORIZER_SERVICE_URL');
+        $this->url = env('NOTIFICATION_SERVICE_URL');
     }
 
     /**
-     * Função que retorna um booleano se o serviço autenticador externo voltar como Autorizado
+     * Função que retorna um booleano se o serviço notificador externo voltar como Success
      *
      * @return bool
      */
@@ -28,6 +28,6 @@ class ExternalAuthorizerService
         $contents = $response->getBody()->getContents();
         $jsonDecoded = json_decode($contents, true);
 
-        return ($jsonDecoded["message"] == "Autorizado") ? true : false;
+        return ($jsonDecoded["message"] == "Success") ? true : false;
     }
 }
