@@ -8,7 +8,9 @@
         "php": "^7.3|^8.0",
         "firebase/php-jwt": "^5.3",
         "guzzlehttp/guzzle": "^7.3",
-        "laravel/lumen-framework": "^8.0"
+        "illuminate/redis": "^8.47",
+        "laravel/lumen-framework": "^8.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
