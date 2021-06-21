@@ -14,13 +14,20 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return [
+        'lumen' => $router->app->version(),
+        'ip' => $_SERVER['SERVER_ADDR']
+    ];
 });
 
-$router->group(['prefix' => '/api/v1', 'middleware' => 'auth'], function () use ($router) {
+$router->group(['prefix' => '/api/v1', 'middleware' => ['auth', 'cors']], function () use ($router) {
 
     // Users
-    $router->get('/users', 'UserController@all');
+    $router->get('/users', 'UserController@index');
+    $router->post('/users', 'UserController@create');
+    $router->get('/users/{id}', 'UserController@show');
+    $router->put('/users/{id}', 'UserController@update');
+    $router->delete('/users/{id}', 'UserController@delete');
 
     // Wallets
     $router->get('/wallet', 'WalletController@read');

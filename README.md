@@ -36,7 +36,7 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 - [ ] Testes de integração
 - [x] Testes unitários
 - [x] Uso de Design Patterns
-- [ ] Documentação (Swagger)
+- [x] Documentação (Swagger)
 - [x] Proposta de melhoria na arquitetura
 
 
@@ -46,11 +46,10 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 - [x] Conhecimento dos riscos comuns de segurança (OWASP)
 - [ ] https://www.php.net/supported-versions.php (dizer o porque usou php7 ou 8)
 - [ ] Design e desenvolvimento de micro serviços horizontalmente escaláveis;
-- [ ] Jobs de alto desempenho e comunicação entre serviços utilizando soluções de fila como Kafka;
+- [x] Jobs de alto desempenho e comunicação entre serviços utilizando soluções de fila como Kafka;
 - [x] Usar o Mysql para os dados em geral
-- [ ] Usar o Mongo para guardar os logs da aplicação
-- [ ] Usar Redis como banco de dados para armazenar os jobs (emails, sms)
-- [ ] Utilizar o Swagger para documentar as APIs
+- [x] Usar Redis como banco de dados para armazenar os jobs (emails, sms)
+- [x] Utilizar o Swagger para documentar as APIs
 - [x] Mostrar o historico dos commits, pequenos commits, de maneira frequente
 - [x] Explicar por que campo cpf e cnpj, por que o sistema deve tratar isso, e o banco deve ser muito claro e transparente quanto ao dado que ele hospeda naquele campo
 
@@ -59,12 +58,23 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 - [x] Usar JWT para autenticação (segurança)
 - [x] Colocar SoftDelete e citar o marco civil da internet
 
+## Adicione estas entradas no seu arquivo de hosts
+
+
 ## Rodando códigos de analise estática
 ```
 docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpmd app html cleancode,codesize,controversial,design,naming,unusedcode --reportfile phpmd.html
-```
-```
 docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpstan analyse --level 1 app
+```
+## Realizar o migrate das tabelas e popular com registros
+```
+docker exec -it instancia01-davenpay php artisan migrate:refresh
+docker exec -it instancia01-davenpay php artisan db:seed
+```
+## Gera a cobertura de código e testa a aplicação
+```
+vendor/bin/phpunit --testdox-html ./reports/testdox.html
+vendor/bin/phpunit --coverage-html ./reports/coverage
 ```
 
 ## Modelagem do banco de dados

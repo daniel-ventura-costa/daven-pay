@@ -31,9 +31,6 @@ services:
   instancia01:
     container_name: instancia01-davenpay
     build: .docker/instancia
-    # stdin_open: true
-    # tty: true
-    # command: composer install
     ports:
       - "8081:80"
     volumes:
@@ -59,6 +56,19 @@ services:
       - "mysql-davenpay"
       - "redis-davenpay"
 
+  processador-jobs-davenpay:
+    container_name: processador-jobs-davenpay
+    build: .docker/instancia
+    command: php artisan queue:listen
+    volumes:
+      - ./:/usr/share/nginx
+      - .docker/instancia/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - network-davenpay
+    depends_on:
+      - "mysql-davenpay"
+      - "redis-davenpay"
+
   nginx-davenpay:
     build: .docker/nginx
     container_name: nginx-davenpay
@@ -71,26 +81,11 @@ services:
       - "instancia01"
       - "instancia02"
 
-  instancia03:
-    container_name: instancia03-davenpay
-    build: .docker/instancia
-    command: php artisan queue:listen
-    ports:
-      - "8083:80"
-    volumes:
-      - ./:/usr/share/nginx
-      - .docker/instancia/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      - network-davenpay
-    depends_on:
-      - "mysql-davenpay"
-      - "redis-davenpay"
-
   swagger-davenpay:
     container_name: swagger-davenpay
     image: swaggerapi/swagger-ui
     ports: 
-      - "8084:8080"
+      - "8083:8080"
     environment:
       SWAGGER_JSON: /tmp/openapi.json
     volumes:
