@@ -3,7 +3,7 @@
 # DavenPay
 Aplicação de uma versão simplificada de uma fintech brasileira ;)
 
-### Objetivos da fintech DavenPay
+## Objetivos da fintech DavenPay
 - [x] Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPF/CNPJ e e-mails devem ser únicos no sistema. Sendo assim, seu sistema deve permitir apenas um cadastro com o mesmo CPF ou endereço de e-mail.
 - [x] Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários.
 - [x] Lojistas só recebem transferências, não enviam dinheiro para ninguém.
@@ -15,7 +15,7 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 
 # Requisitos
 
-### O que será avaliado e valorizamos ❤️
+## O que será avaliado e valorizamos ❤️
 
 - [ ] Documentação
 - [ ] Se for para vaga sênior, foque bastante no desenho de arquitetura
@@ -30,7 +30,7 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 - [x] Arquitetura (estruturar o pensamento antes de escrever)
 - [ ] Carinho em desacoplar componentes (outras camadas, service, repository)
 
-### O que será um diferencial
+## O que será um diferencial
 
 - [x] Uso de Docker
 - [ ] Testes de integração
@@ -40,7 +40,7 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 - [x] Proposta de melhoria na arquitetura
 
 
-### Apontamentos criados
+## Apontamentos criados
 
 - [x] Usar um microframework para o sistema restful (LUMEN)
 - [x] Conhecimento dos riscos comuns de segurança (OWASP)
@@ -54,19 +54,23 @@ Aplicação de uma versão simplificada de uma fintech brasileira ;)
 - [x] Mostrar o historico dos commits, pequenos commits, de maneira frequente
 - [x] Explicar por que campo cpf e cnpj, por que o sistema deve tratar isso, e o banco deve ser muito claro e transparente quanto ao dado que ele hospeda naquele campo
 
-### Proposta de melhoria na arquitetura
+## Proposta de melhoria na arquitetura
 - [x] Utilizar UUID em vez do id como no exemplo de payload, algo que não permita um atacante incrementar o número.
 - [x] Usar JWT para autenticação (segurança)
 - [x] Colocar SoftDelete e citar o marco civil da internet
 
-### Rodando códigos de analise estática
-- [ ] docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpmd app html cleancode,codesize,controversial,design,naming,unusedcode --reportfile phpmd.html
-- [ ] docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpstan analyse --level 1 app
+## Rodando códigos de analise estática
+```
+docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpmd app html cleancode,codesize,controversial,design,naming,unusedcode --reportfile phpmd.html
+```
+```
+docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpstan analyse --level 1 app
+```
 
-### Modelagem do banco de dados
+## Modelagem do banco de dados
 
 ![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_banco_de_dados_1.jpg?raw=true)
 
-### Diagrama da infra-estrutura em Docker
+## Diagrama da infra-estrutura em Docker
 
 ![alt text](https://github.com/daniel-ventura-costa/daven-pay/blob/main/public/assets/img/modelagem_infra_1.jpg?raw=true)
