@@ -22,7 +22,7 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => '/api/v1', 'middleware' => 'auth'], function () use ($router) {
 
     // Users
-    $router->get('/user', 'UserController@all');
+    $router->get('/users', 'UserController@all');
 
     // Wallets
     $router->get('/wallet', 'WalletController@read');
@@ -32,4 +32,7 @@ $router->group(['prefix' => '/api/v1', 'middleware' => 'auth'], function () use 
     $router->post('/transaction', 'TransactionController@transaction');
 });
 
-$router->post('/api/v1/login', 'TokenController@login');
+$router->post('/api/v1/login', [
+    'middleware' => 'cors',
+    'uses' => 'TokenController@login'
+]);
