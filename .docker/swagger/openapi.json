@@ -1,0 +1,112 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API da DavenPay",
+    "description": "Fintech de pagamentos Brasileira ;)",
+    "version": "0.0.1",
+    "termsOfService": "https://davenpay.dev/",
+    "contact": {
+      "name": "Contato",
+      "url": "https://davenpay.dev",
+      "email": "contato@davenpay.dev"
+    },
+    "license": {
+      "name": "GPLv3",
+      "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+    }
+  },
+  "externalDocs": {
+    "description": "Documentação burocrática",
+    "url": "https://davenpay.dev/"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8081/api/v1/",
+      "description": "Servidor de teste"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Retorna todos os usuários",
+        "responses": {
+          "200": {
+            "description": "Sucess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "summary": "Retorna uma entidade pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "descricao": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Especialidade não encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Entity not found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
