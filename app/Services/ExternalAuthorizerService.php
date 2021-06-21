@@ -6,13 +6,6 @@ use GuzzleHttp\Client;
 
 class ExternalAuthorizerService
 {
-    private $url;
-
-    public function __constuct()
-    {
-        $this->url = env('EXTERNAL_AUTHORIZER_SERVICE_URL');
-    }
-
     /**
      * Função que retorna um booleano se o serviço autenticador externo voltar como Autorizado
      *
@@ -20,10 +13,12 @@ class ExternalAuthorizerService
      */
     public function authorize(): bool
     {
+        $url = env('EXTERNAL_AUTHORIZER_SERVICE_URL');
+
         $client = new Client([
             'verify' => false
         ]);
-        $response = $client->get($this->url);
+        $response = $client->get($url);
 
         $contents = $response->getBody()->getContents();
         $jsonDecoded = json_decode($contents, true);

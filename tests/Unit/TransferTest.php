@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Services\ExternalAuthorizerService;
 use App\Services\TransactionService;
+use App\Services\TransferService;
 use Tests\TestCase;
 
 class TransferTest extends TestCase
@@ -114,7 +115,7 @@ class TransferTest extends TestCase
         $walletPayeeHash = $userPayeeModel->wallet->wallet_hash;
 
         $this->expectException(ExternalAuthorizerException::class);
-        (new TransactionService($amount, $walletPayerHash, $walletPayeeHash, $authorizorService))->transfer();
+        (new TransferService($amount, $walletPayerHash, $walletPayeeHash, $authorizorService))->transfer();
     }
 
     public function test_transfer_has_success()

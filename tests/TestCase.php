@@ -4,6 +4,7 @@ namespace Tests;
 
 use App\Services\ExternalAuthorizerService;
 use App\Services\TransactionService;
+use App\Services\TransferService;
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
@@ -34,6 +35,6 @@ abstract class TestCase extends BaseTestCase
     protected function callTransactionService($amount, $walletPayerHash, $walletPayeeHash)
     {
         $authorizorService = new ExternalAuthorizerService();
-        return (new TransactionService($amount, $walletPayerHash, $walletPayeeHash, $authorizorService));
+        return (new TransferService($amount, $walletPayerHash, $walletPayeeHash, $authorizorService));
     }
 }
