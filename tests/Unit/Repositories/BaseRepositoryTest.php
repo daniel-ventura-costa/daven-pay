@@ -13,7 +13,6 @@ class BaseRepositoryTest extends TestCase
     public function test_if_insert_user_returns_true()
     {
         $faker = Faker::create('pt_BR');
-
         $array = [
             'user_type_id' => 1,
             'name'       => $faker->name(),

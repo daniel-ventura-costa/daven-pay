@@ -2,13 +2,32 @@
 
 namespace Tests;
 
+use App\Repositories\UserRepository;
 use App\Services\ExternalAuthorizerService;
-use App\Services\TransactionService;
 use App\Services\TransferService;
+use Carbon\Carbon;
+use Faker\Factory as Faker;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Lumen\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+
+    public function createUser()
+    {
+        $faker = Faker::create('pt_BR');
+        $array = [
+            'user_type_id' => 1,
+            'name'       => $faker->name(),
+            'cpf'        => $faker->cpf(),
+            'email'      => "email@email.com",
+            'password'   => Hash::make('password'),
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ];
+
+        (new UserRepository())->insert($array);
+    }
 
     /**
      * Creates the application.
