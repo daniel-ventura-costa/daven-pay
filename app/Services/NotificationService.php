@@ -18,7 +18,7 @@ class NotificationService
      *
      * @return bool
      */
-    public function authorize(): bool
+    public function notify(): bool
     {
         $client = new Client([
             'verify' => false

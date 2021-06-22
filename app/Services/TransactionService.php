@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Transaction;
+use App\Models\Transaction as TransactionModel;
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
@@ -33,6 +33,6 @@ class TransactionService
             'updated_at'           => Carbon::now()->toDateTimeString(),
         ];
 
-        return (new Transaction())->insert($arrayInsert);
+        return (new TransactionModel())->insert($arrayInsert);
     }
 }

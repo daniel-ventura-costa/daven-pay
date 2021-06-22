@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Exceptions\NotificationException;
+use App\Services\NotificationService;
 use App\Services\TransactionService;
 use Illuminate\Support\Facades\Log;
 
@@ -24,7 +26,12 @@ class TransferMoneyJob extends Job
         $transactionService = new TransactionService($this->amount, $this->walletPayerModelId, $this->walletPayeeModelId);
         $transactionService->makeTransaction();
 
-        // Envia a notificação
+        // Consulta o serviço de notificação externo
+        $isSuccess = (new NotificationService())->notify();
+        if (!$isSuccess) {
+            throw new NotificationException();
+        }
+
         Log::debug('Transferencia efetuada com sucesso.');
     }
 }

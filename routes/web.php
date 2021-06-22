@@ -21,7 +21,6 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => '/api/v1', 'middleware' => ['auth', 'cors']], function () use ($router) {
-
     // Users
     $router->get('/users', 'UserController@index');
     $router->post('/users', 'UserController@create');
@@ -29,15 +28,8 @@ $router->group(['prefix' => '/api/v1', 'middleware' => ['auth', 'cors']], functi
     $router->put('/users/{id}', 'UserController@update');
     $router->delete('/users/{id}', 'UserController@delete');
 
-    // Wallets
-    $router->get('/wallet', 'WalletController@read');
-    $router->post('/wallet', 'WalletController@create');
-
     // Transactions
     $router->post('/transaction', 'TransactionController@transaction');
 });
 
-$router->post('/api/v1/login', [
-    'middleware' => 'cors',
-    'uses' => 'TokenController@login'
-]);
+$router->post('/api/v1/login', ['middleware' => 'cors', 'uses' => 'TokenController@login']);

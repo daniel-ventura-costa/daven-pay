@@ -30,7 +30,7 @@ class TransactionController extends Controller
             $transactionService->transfer();
 
             DB::commit();
-            return response()->json("Transferência efetuada com sucesso", 200);
+            return response()->json("Transferência criada com sucesso", 201);
         } catch (CustomException $e) {
             DB::rollback();
             return response()->json($e->getMessage(), $e->getCode());
