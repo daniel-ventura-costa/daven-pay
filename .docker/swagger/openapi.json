@@ -26,6 +26,48 @@
     }
   ],
   "paths": {
+    "/transaction": {
+      "post": {
+        "summary": "Realiza a transação entre carteiras",
+        "requestBody": {
+          "description": "Realiza a transação entre carteiras",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number",
+                    "format": "float",
+                    "example": 10.5
+                  },
+                  "payer_wallet_hash": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "payee_wallet_hash": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": [
+          "Transaction"
+        ],
+        "responses": {
+          "200": {
+            "description": "Will send `Authenticated`"
+          },
+          "401": {
+            "description": "Não autorizado"
+          }
+        }
+      }
+    },
     "/users": {
       "get": {
         "summary": "Retorna todos os usuários",
@@ -100,6 +142,57 @@
                       "type": "string",
                       "example": "Entity not found"
                     }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Autenticação"
+        ],
+        "summary": "Loga o usuário no sistema",
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        },
+        "requestBody": {
+          "description": "Loga o usuário no sistema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "email@dominio.com.br"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "example": "senha"
                   }
                 }
               }

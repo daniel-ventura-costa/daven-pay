@@ -36,7 +36,7 @@ class TokenController extends Controller
         } catch (CustomException $e) {
             return response()->json($e->getMessage(), $e->getCode());
         } catch (\Exception $e) {
-            return response()->json("Servidor respondeu de forma inesperada", 500);
+            return response()->json($e->getMessage(), 500);
         }
     }
 }
