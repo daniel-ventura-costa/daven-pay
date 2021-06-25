@@ -10,6 +10,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => '/api/v1', 'middleware' => ['auth', 'cors']], function () use ($router) {
+    $router->get('/transaction', 'TransactionController@list');
     $router->post('/transaction', 'TransactionController@transaction');
 });
 

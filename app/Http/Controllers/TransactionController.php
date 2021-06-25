@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\CustomException;
+use App\Models\Transaction as TransactionModel;
 use App\Services\ExternalAuthorizerService;
 use App\Services\TransferService;
 use Illuminate\Http\Request;
@@ -39,5 +40,10 @@ class TransactionController extends Controller
             DB::rollback();
             return response()->json("O servidor respondeu com um erro inesperado.", 500);
         }
+    }
+
+    public function list()
+    {
+        return TransactionModel::all()->toArray();
     }
 }

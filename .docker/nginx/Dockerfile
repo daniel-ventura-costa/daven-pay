@@ -6,8 +6,6 @@ RUN apt install vim -y
 RUN apt install libnss3-tools -y
 RUN apt install wget -y
 
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-
 RUN cd ~
 
 RUN wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64

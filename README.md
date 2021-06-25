@@ -64,8 +64,8 @@ docker run -it --rm -v ${pwd}:/project -w /project jakzal/phpqa phpstan analyse 
 ```
 ## Realizar o migrate das tabelas e popular com registros
 ```
-docker exec -it instancia01-davenpay php artisan migrate:refresh
-docker exec -it instancia01-davenpay php artisan db:seed
+docker exec -it api01 php artisan migrate:refresh
+docker exec -it api01 php artisan db:seed
 ```
 ## Gera a cobertura de código e testa a aplicação
 ```

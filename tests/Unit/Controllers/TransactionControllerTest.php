@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class TransactionControllerTest extends TestCase
 {
-    public function test()
+    public function testTransferMoneyWithSuccess()
     {
         $userPayerModel = User::factory(['user_type_id' => 1])->has(
             Wallet::factory()->has(Transaction::factory(['amount' => 100]), 'payeeTransactions'),
@@ -31,5 +31,29 @@ class TransactionControllerTest extends TestCase
 
         $response = $this->call('post', $url, $parameters);
         $this->assertEquals(201, $response->getStatusCode());
+    }
+
+    public function testNotAuthorizedWhenNotLogged()
+    {
+        $response = $this->call('get', '/api/v1/transaction');
+        $this->assertEquals(401, $response->getStatusCode());
+    }
+
+    public function testReturnSuccessfulTransactions()
+    {
+        $userModel = User::factory(['user_type_id' => 1])->create();
+        $this->actingAs($userModel);
+
+        $response = $this->call('get', '/api/v1/transaction');
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function testReturnGetTransactionsIsArray()
+    {
+        $userModel = User::factory()->create();
+        $this->actingAs($userModel);
+
+        $response = $this->call('get', '/api/v1/transaction');
+        $this->assertJson($response->getContent());
     }
 }

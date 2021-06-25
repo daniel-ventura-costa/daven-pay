@@ -2,6 +2,16 @@ version: '3'
 
 services:
 
+  site:
+    container_name: site
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    networks:
+      - default
+    volumes:
+      - "./site:/usr/share/nginx/html"
+
   mysql-davenpay:
     container_name: mysql-davenpay
     image: mysql:latest
@@ -13,23 +23,21 @@ services:
       MYSQL_DATABASE: davenpay
       MYSQL_ROOT_PASSWORD: davenpay
     networks:
-      - network-davenpay
+      - default
 
-  redis-davenpay:
-    container_name: redis-davenpay
+  redis:
+    container_name: redis
     image: redis:latest
     ports:
       - "6379:6379"
-    volumes:
-      - .docker/redis/redis.conf:/usr/local/etc/redis/redis.conf
     environment:
       MYSQL_DATABASE: davenpay
       MYSQL_ROOT_PASSWORD: davenpay
     networks:
-      - network-davenpay
+      - default
 
-  instancia01:
-    container_name: instancia01-davenpay
+  api01:
+    container_name: api01
     build: .docker/instancia
     ports:
       - "8081:80"
@@ -37,13 +45,13 @@ services:
       - ./:/usr/share/nginx
       - .docker/instancia/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - network-davenpay
+      - default
     depends_on:
       - "mysql-davenpay"
-      - "redis-davenpay"
+      - "redis"
 
-  instancia02:
-    container_name: instancia02-davenpay
+  api02:
+    container_name: api02
     build: .docker/instancia
     ports:
       - "8082:80"
@@ -51,45 +59,38 @@ services:
       - ./:/usr/share/nginx
       - .docker/instancia/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - network-davenpay
+      - default
     depends_on:
       - "mysql-davenpay"
-      - "redis-davenpay"
+      - "redis"
 
-  processador-jobs-davenpay:
-    container_name: processador-jobs-davenpay
+  processador-jobs:
+    container_name: processador-jobs
     build: .docker/instancia
     command: php artisan queue:listen
     volumes:
       - ./:/usr/share/nginx
       - .docker/instancia/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - network-davenpay
+      - default
     depends_on:
       - "mysql-davenpay"
-      - "redis-davenpay"
+      - "redis"
 
-  nginx-davenpay:
+  nginx:
     build: .docker/nginx
-    container_name: nginx-davenpay
+    container_name: nginx
     ports:
       - "80:80"
       - "443:443"
-    networks:
-      - network-davenpay
-    depends_on:
-      - "instancia01"
-      - "instancia02"
-
-  swagger-ui:
-    container_name: swagger-ui
-    image: swaggerapi/swagger-ui
-    ports: 
-      - "8083:8080"
-    environment:
-      SWAGGER_JSON: /tmp/openapi.json
     volumes:
-      - .docker/swagger:/tmp
+      - .docker/nginx/api.conf:/etc/nginx/conf.d/api.conf
+      - .docker/nginx/site.conf:/etc/nginx/conf.d/site.conf
+    networks:
+      - default
+    depends_on:
+      - "api01"
+      - "api02"
 
   swagger-editor:
     container_name: swagger-editor
@@ -102,5 +103,5 @@ services:
       - .docker/swagger:/tmp
 
 networks:
-  network-davenpay:
+  default:
     driver: bridge
