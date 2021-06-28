@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace App;
 
 use App\Exceptions\WalletPayerNotFoundException;
 use App\Models\Transaction;
@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 class WalletTest extends TestCase
 {
-    public function test_if_wallet_has_balance()
+    public function testIfWalletHasBalance()
     {
         $amount = 100;
 
@@ -29,7 +29,7 @@ class WalletTest extends TestCase
         $this->assertTrue($hasBalance);
     }
 
-    public function test_if_wallet_has_no_balance()
+    public function testIfWalletHasNoBalance()
     {
         $amount = 10;
 
@@ -40,7 +40,7 @@ class WalletTest extends TestCase
         $this->assertFalse($hasBalance);
     }
 
-    public function test_wallet_payer_not_found()
+    public function testWalletPayerNotFound()
     {
         $amount = 10.00;
         $walletPayerHash = '1234';

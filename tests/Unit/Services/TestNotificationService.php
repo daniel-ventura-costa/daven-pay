@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class TestNotificationService extends TestCase
 {
-    public function test_notification_returns_success()
+    public function testNotificationReturnsSuccess()
     {
         $isSuccess = (new NotificationService())->authorize();
         $this->assertTrue($isSuccess);

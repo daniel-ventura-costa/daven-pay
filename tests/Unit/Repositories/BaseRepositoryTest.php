@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class BaseRepositoryTest extends TestCase
 {
-    public function test_if_insert_user_returns_true()
+    public function testIfInsertUserReturnsTrue()
     {
         $faker = Faker::create('pt_BR');
         $array = [

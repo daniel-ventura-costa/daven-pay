@@ -2,9 +2,14 @@
 
 namespace Tests\Unit\Controllers;
 
+use App\Exceptions\PayerIsShopkeeperException;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Services\ExternalAuthorizerService;
+use App\Services\TransactionService;
+use Exception;
+use Mockery;
 use Tests\TestCase;
 
 class TransactionControllerTest extends TestCase
@@ -33,27 +38,25 @@ class TransactionControllerTest extends TestCase
         $this->assertEquals(201, $response->getStatusCode());
     }
 
-    public function testNotAuthorizedWhenNotLogged()
+    public function testTransactionThrowCustomCustomException()
     {
-        $response = $this->call('get', '/api/v1/transaction');
-        $this->assertEquals(401, $response->getStatusCode());
-    }
+        $userShopkeeperModel = User::factory(['user_type_id' => 2])->has(
+            Wallet::factory()->has(Transaction::factory(['amount' => 100]), 'payeeTransactions'),
+            'wallet'
+        )->create();
+        $walletPayerHash = $userShopkeeperModel->wallet->wallet_hash;
+        $this->actingAs($userShopkeeperModel);
+        
+        $userModel = User::factory()->has(Wallet::factory())->create();
+        $walletPayeeHash = $userModel->wallet->wallet_hash;
 
-    public function testReturnSuccessfulTransactions()
-    {
-        $userModel = User::factory(['user_type_id' => 1])->create();
-        $this->actingAs($userModel);
+        $parameters = [
+            'amount'            => 10.00,
+            'payer_wallet_hash' => $walletPayerHash,
+            'payee_wallet_hash' => $walletPayeeHash
+        ];
 
-        $response = $this->call('get', '/api/v1/transaction');
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
-    public function testReturnGetTransactionsIsArray()
-    {
-        $userModel = User::factory()->create();
-        $this->actingAs($userModel);
-
-        $response = $this->call('get', '/api/v1/transaction');
-        $this->assertJson($response->getContent());
+        $response = $this->call('post', '/api/v1/transaction', $parameters);
+        $this->assertEquals(400, $response->getStatusCode());
     }
 }

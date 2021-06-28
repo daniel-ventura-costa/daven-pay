@@ -21,14 +21,70 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8081/api/v1/",
+      "url": "https://localhost/api/v1/",
       "description": "Servidor de teste"
     }
   ],
   "paths": {
+    "/login": {
+      "post": {
+        "tags": [
+          "Autenticação"
+        ],
+        "summary": "Loga o usuário no sistema",
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "format": "uuid"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invalid username/password supplied"
+          }
+        },
+        "requestBody": {
+          "description": "Loga o usuário no sistema",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "example": "email@dominio.com.br"
+                  },
+                  "password": {
+                    "type": "string",
+                    "format": "password",
+                    "example": "senha"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/transaction": {
       "post": {
         "summary": "Realiza a transação entre carteiras",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "description": "Realiza a transação entre carteiras",
           "content": {
@@ -59,146 +115,25 @@
           "Transaction"
         ],
         "responses": {
-          "200": {
-            "description": "Will send `Authenticated`"
-          },
-          "401": {
-            "description": "Não autorizado"
-          }
-        }
-      }
-    },
-    "/users": {
-      "get": {
-        "summary": "Retorna todos os usuários",
-        "responses": {
-          "200": {
-            "description": "Sucess",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "email": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/{id}": {
-      "get": {
-        "summary": "Retorna uma entidade pelo ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer"
-                    },
-                    "descricao": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Especialidade não encontrada",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Entity not found"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/login": {
-      "post": {
-        "tags": [
-          "Autenticação"
-        ],
-        "summary": "Loga o usuário no sistema",
-        "responses": {
-          "200": {
-            "description": "Login realizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "access_token": {
-                      "type": "string",
-                      "format": "uuid"
-                    }
-                  }
-                }
-              }
-            }
+          "201": {
+            "description": "Transação criada com sucesso"
           },
           "400": {
-            "description": "Invalid username/password supplied"
-          }
-        },
-        "requestBody": {
-          "description": "Loga o usuário no sistema",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "type": "string",
-                    "format": "email",
-                    "example": "email@dominio.com.br"
-                  },
-                  "password": {
-                    "type": "string",
-                    "format": "password",
-                    "example": "senha"
-                  }
-                }
-              }
-            }
+            "description": "Amount needs to be greater than zero <br>\nCarteira do sacado/pagador não encontrada <br>\nThe logged  user is not the owner of payer wallet <br>\nOperação não permitida: o pagador é um lojista <br>\nOperação não permitida: o pagador não tem saldo suficiente <br>\nCarteira do cedente/beneficiário não encontrada.<br>\nO serviço de autorização externo negou a transação.\n"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

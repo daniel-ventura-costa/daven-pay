@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class TestExternalAuthorizerService extends TestCase
 {
-    public function test_external_authorize_returns_boolean()
+    public function testExternalAuthorizeReturnsBoolean()
     {
         $isAuthorized = (new ExternalAuthorizerService())->authorize();
         $this->assertTrue($isAuthorized);

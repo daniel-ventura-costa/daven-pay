@@ -36,14 +36,8 @@ class TransactionController extends Controller
             DB::rollback();
             return response()->json($e->getMessage(), $e->getCode());
         } catch (\Exception $e) {
-            dd($e);
             DB::rollback();
             return response()->json("O servidor respondeu com um erro inesperado.", 500);
         }
-    }
-
-    public function list()
-    {
-        return TransactionModel::all()->toArray();
     }
 }

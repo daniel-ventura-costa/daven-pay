@@ -13,11 +13,14 @@ use App\Models\Wallet;
 use App\Services\ExternalAuthorizerService;
 use App\Services\TransactionService;
 use App\Services\TransferService;
+use Exception;
+use Mockery;
 use Tests\TestCase;
 
 class TransferTest extends TestCase
 {
-    public function test_if_user_is_shopkeeper_transfer_is_not_allowed()
+    
+    public function testIfUserIsShopkeeperTransferIsNotAllowed()
     {
         $amount = 10.00;
 
@@ -34,7 +37,7 @@ class TransferTest extends TestCase
         $this->callTransactionService($amount, $walletPayerHash, $walletPayeeHash)->transfer();
     }
 
-    public function test_amount_below_zero()
+    public function testAmountBelowZero()
     {
         $amount = -1;
         $walletPayerHash = '1234';
@@ -46,7 +49,7 @@ class TransferTest extends TestCase
         $this->callTransactionService($amount, $walletPayerHash, $walletPayeeHash)->transfer();
     }
 
-    public function test_logged_user_is_not_the_owner_of_the_payer_wallet()
+    public function testLoggedUserIsNotTheOwnerOfThePayerWallet()
     {
         $amount = 10.00;
 
@@ -63,7 +66,7 @@ class TransferTest extends TestCase
         $this->callTransactionService($amount, $walletPayerHash, $walletPayeeHash)->transfer();
     }
 
-    public function test_payer_has_not_balance()
+    public function testPayerHasNotBalance()
     {
         $amount = 200;
 
@@ -81,7 +84,7 @@ class TransferTest extends TestCase
         $this->callTransactionService($amount, $walletPayerHash, $walletPayeeHash)->transfer();
     }
 
-    public function test_payee_has_wallet()
+    public function testPayeeHasWallet()
     {
         $amount = 50;
 
@@ -98,7 +101,7 @@ class TransferTest extends TestCase
         $this->callTransactionService($amount, $walletPayerHash, $walletPayeeHash)->transfer();
     }
 
-    public function test_external_service_not_allowed()
+    public function testExternalServiceNotAllowed()
     {
         $amount = 50;
         $authorizorService = $this->createMock(ExternalAuthorizerService::class);
@@ -118,7 +121,7 @@ class TransferTest extends TestCase
         (new TransferService($amount, $walletPayerHash, $walletPayeeHash, $authorizorService))->transfer();
     }
 
-    public function test_transfer_has_success()
+    public function testTransHasSuccess()
     {
         $amount = 50;
 
